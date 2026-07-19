@@ -22,12 +22,12 @@ Note: iHDL currently does not support inline comments inside HDL source files. D
 
 - SR Latch
 - Clocked SR Latch
-
-## Planned
-
 - D Latch
 - Edge-triggered SR Latch
 - D Flip-Flop
+
+## Planned
+
 - 1-bit Register
 - 16-bit Register
 - Program Counter
