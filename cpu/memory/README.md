@@ -25,10 +25,10 @@ Note: iHDL currently does not support inline comments inside HDL source files. D
 - D Latch
 - Edge-triggered SR Latch
 - D Flip-Flop
+- 1-bit Register
 
 ## Planned
 
-- 1-bit Register
 - 16-bit Register
 - Program Counter
 - RAM8
