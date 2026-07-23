@@ -39,6 +39,43 @@ For synchronous circuits, inputs should only be changed once per **full clock cy
 
 This behavior is compatible with the synchronous execution model used by the Hack Computer architecture while also exposing the internal operation of the master-slave implementation for educational purposes.
 
+## RAM8
+
+`RAM8` is an 8-word memory module composed of eight 16-bit registers.
+
+### Inputs
+
+| Name | Width | Description |
+|------|------:|-------------|
+| `IN` | 16 | Data to be written. |
+| `LOAD` | 1 | When `1`, writes `IN` to the selected address on the next clock cycle. When `0`, performs a read operation. |
+| `ADDR` | 3 | Selects one of the eight registers (`000`–`111`). |
+| `CLK` | 1 | Clock input. |
+
+### Output
+
+| Name | Width | Description |
+|------|------:|-------------|
+| `OUT` | 16 | Contents of the selected register. |
+
+### Initialization
+
+Each register powers up in an undefined (`ERROR`) state. Before using the RAM, initialize every register to a known value.
+
+1. Set:
+   - `IN = 0000000000000000`
+   - `LOAD = 1`
+   - `CLK = 0`
+2. Starting with `ADDR = 000`, perform one complete clock cycle.
+3. Increment `ADDR` and repeat for all addresses up to `111`.
+4. After all eight registers have been initialized, set:
+   - `LOAD = 0`
+5. Perform one additional complete clock cycle.
+
+The RAM is now fully initialized and can be used for normal read and write operations without producing `ERROR` values from uninitialized registers.
+
+> **Note:** iHDL explicitly represents uninitialized storage elements as `ERROR`. Initializing all registers before use ensures deterministic behavior.
+
 ## Implemented
 
 - SR Latch
@@ -48,11 +85,11 @@ This behavior is compatible with the synchronous execution model used by the Hac
 - D Flip-Flop
 - 1-bit Register
 - 16-bit Register
+- RAM8
 
 ## Planned
 
 - Program Counter
-- RAM8
 - RAM64
 - RAM512
 - RAM4K
