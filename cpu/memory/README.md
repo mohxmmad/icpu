@@ -6,7 +6,7 @@ The objective is to build sequential logic from first principles.
 
 ## Learning Path
 
-Primitive Gates -> SR Latch -> Clocked SR Latch -> Edge Triggered SR Latch -> D Flip Flop -> Register -> RAM
+Primitive Gates -> SR Latch -> Clocked SR Latch -> Edge Triggered SR Latch -> D Flip Flop -> Register -> RAM -> ROM
 
 ## Clock Semantics
 
@@ -49,6 +49,7 @@ This behavior is compatible with the synchronous execution model used by the Hac
 |------|------:|-------------|
 | `IN` | 16 | Data to be written. |
 | `LOAD` | 1 | When `1`, writes `IN` to the selected address on the next clock cycle. When `0`, performs a read operation. |
+| `RESET` | 1 | Used to INITIALIZE the registers. |
 | `ADDR` | 3 | Selects one of the eight registers (`000`–`111`). |
 | `CLK` | 1 | Clock input. |
 
@@ -63,14 +64,11 @@ This behavior is compatible with the synchronous execution model used by the Hac
 Each register powers up in an undefined (`ERROR`) state. Before using the RAM, initialize every register to a known value.
 
 1. Set:
-   - `IN = 0000000000000000`
-   - `LOAD = 1`
+   - `RESET = 1`
    - `CLK = 0`
-2. Starting with `ADDR = 000`, perform one complete clock cycle.
-3. Increment `ADDR` and repeat for all addresses up to `111`.
-4. After all eight registers have been initialized, set:
-   - `LOAD = 0`
-5. Perform one additional complete clock cycle.
+2. Perform one complete clock cycle.
+3. Set:
+   - `RESET = 0`
 
 The RAM is now fully initialized and can be used for normal read and write operations without producing `ERROR` values from uninitialized registers.
 
@@ -86,12 +84,13 @@ The RAM is now fully initialized and can be used for normal read and write opera
 - 1-bit Register
 - 16-bit Register
 - RAM8
+- Program Counter
 
 ## Planned
 
-- Program Counter
 - RAM64
 - RAM512
+- ROM
 - RAM4K
 - RAM16K
 
