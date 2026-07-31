@@ -66,7 +66,7 @@ Each register powers up in an undefined (`ERROR`) state. Before using the RAM, i
 1. Set:
    - `RESET = 1`
    - `CLK = 0`
-2. Perform one complete clock cycle.
+2. Perform one half clock cycle.
 3. Set:
    - `RESET = 0`
 
@@ -88,7 +88,7 @@ The RAM is now fully initialized and can be used for normal read and write opera
 - RAM64
 - RAM512
 - RAM4K
-- RAM16K
+- RAM32K
 
 ## Planned
 
