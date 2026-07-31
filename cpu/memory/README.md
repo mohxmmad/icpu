@@ -85,14 +85,14 @@ The RAM is now fully initialized and can be used for normal read and write opera
 - 16-bit Register
 - RAM8
 - Program Counter
+- RAM64
+- RAM512
+- RAM4K
+- RAM16K
 
 ## Planned
 
-- RAM64
-- RAM512
 - ROM
-- RAM4K
-- RAM16K
 
 ## Philosophy
 
