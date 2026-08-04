@@ -1,7 +1,5 @@
 # Memory Layer
 
-The memory subsystem is currently under development.
-
 The objective is to build sequential logic from first principles.
 
 ## Learning Path
@@ -89,9 +87,7 @@ The RAM is now fully initialized and can be used for normal read and write opera
 - RAM512
 - RAM4K
 - RAM32K
-
-## Planned
-
+- VRAM (Display Memory)
 - ROM
 
 ## Philosophy
