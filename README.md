@@ -14,6 +14,7 @@ The goal is to understand how a complete computer is built from simple logic gat
 
 - [ALU Design](cpu/alu/README.md)
 - [Memory Layer](cpu/memory/README.md)
+- [Instruction Description](cpu/control/README.md)
 
 ## Inspiration
 

@@ -37,6 +37,20 @@ For synchronous circuits, inputs should only be changed once per **full clock cy
 
 This behavior is compatible with the synchronous execution model used by the Hack Computer architecture while also exposing the internal operation of the master-slave implementation for educational purposes.
 
+## FLOAT
+
+`FLOAT` is the floating-gate-based memory cell used by the memory subsystem.
+
+It provides persistent storage of a single bit and supports:
+
+- Loading/writing the stored bit.
+- Reading the stored bit.
+- Resetting the stored bit.
+
+Multiple `FLOAT` cells are combined to construct larger memory modules.
+
+The floating-gate storage allows the memory state to be retained independently of the normal register-based datapath.
+
 ## RAM8
 
 `RAM8` is an 8-word memory module composed of eight 16-bit registers.
@@ -71,6 +85,40 @@ Each register powers up in an undefined (`ERROR`) state. Before using the RAM, i
 The RAM is now fully initialized and can be used for normal read and write operations without producing `ERROR` values from uninitialized registers.
 
 > **Note:** iHDL explicitly represents uninitialized storage elements as `ERROR`. Initializing all registers before use ensures deterministic behavior.
+
+## VRAM4K
+
+`VRAM4K` is a 4K-word video memory module used to store the framebuffer for the display.
+
+Each word is 16 bits wide.
+
+```text
+4K × 16 bits = 65,536 bits
+```
+
+The module supports writing 16 bits at a time and outputs all 65,536 stored bits.
+
+Two `VRAM4K` modules can be combined to provide:
+
+```text
+65,536 + 65,536 = 131,072 bits
+```
+
+The display resolution is:
+
+```text
+256 × 512 = 131,072 pixels
+```
+
+Therefore, two `VRAM4K` modules provide exactly enough bits for one complete 256 × 512 framebuffer.
+
+```text
+VRAM4K ──┐
+         ├── 131,072-bit framebuffer ──> Display
+VRAM4K ──┘
+```
+
+VRAM is separate from the normal RAM subsystem and is dedicated to storing display data.
 
 ## Implemented
 
