@@ -50,7 +50,7 @@ If the first two bits are `10`, the instruction is an F instruction.
 The defined F operation is:
 
 ```text
-ROM[D] = RAM[A]
+ROM[A] = D
 ```
 
 The last 13 bits of the F instruction are currently reserved.
@@ -112,7 +112,7 @@ Controls the instruction source.
 
 Normal execution uses ROM.
 
-The F instruction switches the instruction source to the RAM path.
+The F instruction optionally switches the instruction source to the RAM path.
 
 ## ALU Controls
 
@@ -201,12 +201,11 @@ The resulting decision controls `PC_LOAD`.
 The F instruction performs:
 
 ```text
-ROM[D] = RAM[A]
+ROM[A] = D
 ```
 
-- `A` provides the RAM source address.
-- `RAM[A]` provides the data.
-- `D` provides the ROM destination address.
+- `A` provides the ROM destination address.
+- `D` provides the data.
 
 During F:
 
